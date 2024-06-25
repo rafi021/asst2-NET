@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "View";
+}
+
+@model  MVC_NET1.Controllers.DashboardViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Inventory List -->
+            <div class="bg-white p-4 rounded shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Inventory Equipment List</h2>
+                <ul class="list-disc pl-5">
+                    @foreach (var item in Model.Inventories)
+                    {
+                        <li>@item?.Name</li>
+                    }
+                </ul>
+            </div>
+
+            <!-- Member List -->
+            <div class="bg-white p-4 rounded shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Member List</h2>
+                <ul class="list-disc pl-5">
+                    @foreach (var member in Model.Members)
+                    {
+                        <li>@member?.Name</li>
+                    }
+                </ul>
+            </div>
+
+            <!-- Inventory Assignments -->
+            <div class="bg-white p-4 rounded shadow-md col-span-1 md:col-span-2 lg:col-span-1">
+                <h2 class="text-xl font-semibold mb-4">Inventory Equipment Assigned to Members</h2>
+                <ul class="list-disc pl-5">
+                    @foreach (var assignment in Model.Assignments)
+                    {
+                        <li>@assignment.Member?.Name has @assignment.Inventory?.Name</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
